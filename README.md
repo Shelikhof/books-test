@@ -8,4 +8,4 @@
 запуск приложения 
 docker-compose up --build
 docker exec server  npx prisma migrate dev
-docker-compose up --buildk
+docker-compose up --build
