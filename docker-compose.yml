@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  server:
+    build: .
+    container_name: server
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    environment:
+      DATABASE_URL: postgres://postgres:1337@postgres:5432/books?schema=public
+    command: npm run start:dev
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:14
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1337
+      POSTGRES_DB: books
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:
