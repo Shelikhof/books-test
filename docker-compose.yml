@@ -6,8 +6,6 @@ services:
     container_name: server
     ports:
       - "3000:3000"
-    volumes:
-      - .:/usr/src/app
     environment:
       DATABASE_URL: postgres://postgres:1337@postgres:5432/books?schema=public
     command: npm run start:dev
